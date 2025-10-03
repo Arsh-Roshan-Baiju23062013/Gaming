@@ -13,7 +13,7 @@ def draw():
         r1.center=300, 300
         r=random.randint(50, 255)
         g=random.randint(50, 255)
-        b=random.randint(50, 2aaaaa55)
+        b=random.randint(50, 255)
         color=(r, g, b)
         screen.draw.rect(r1, color)
 # def update():
