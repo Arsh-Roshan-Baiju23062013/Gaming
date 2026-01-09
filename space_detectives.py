@@ -11,14 +11,16 @@ enemies=[]
 timer=0
 Life=10
 Charge=0
-d=1
+dur=2
 explosions=[]
 Attack=False
+win=Rect(0, 0, 512, 512)
+over=Rect(0, 0, 512, 512)
 def draw():
     global timer
     global Life
     global Charge
-    global d
+    global dur
     screen.clear()
     screen.blit("map", pos)
     spaceship.draw()
@@ -33,10 +35,12 @@ def draw():
             timer=0
         for enemy in enemies:
             enemy.draw()
-            if Charge%10==0:
-                d=d-0.1
-            animate(enemy,angle=enemy.angle_to(spaceship.pos)-90, duration=d)  
-            animate(enemy, pos=spaceship.pos, duration=2)
+            if Charge%5==0 and Charge!=0:
+                dur=dur-0.001
+            if dur<=0.2:
+                dur=0.3
+            animate(enemy,angle=enemy.angle_to(spaceship.pos)-90, duration=dur)  
+            animate(enemy, pos=spaceship.pos, duration=dur)
             if enemy.colliderect(spaceship)==True:
                 if Attack==False:
                     Life=Life-1
@@ -47,20 +51,26 @@ def draw():
                 explosion=Actor("explosion1")
                 explosions.append(explosion)
                 explosion.pos=enemy.pos
-                enemies.remove(enemy)    
+                enemies.remove(enemy)
+        if Life>=15:
+            screen.draw.filled_rect(win, ("Yellow")) 
+            screen.draw.text("You Won", (240, 240), color="black")
+        elif Life<=0:
+            screen.draw.filled_rect(over, ("Red"))
+            screen.draw.text("You Lost", (240, 240), color="Black")             
 def update_explosion():
     global explosions
     for explosion in explosions:
         if explosion.image=="explosion1":
-            explosion.image=="explosion2"
+            explosion.image="explosion2"
         elif explosion.image=="explosion2":
-            explosion.image=="explosion3"
+            explosion.image="explosion3"
         elif explosion.image=="explosion3":
-            explosion.image=="explosion4"
+            explosion.image="explosion4"
         elif explosion.image=="explosion4":
-            explosion.image=="explosion5"
+            explosion.image="explosion5"
         elif explosion.image=="explosion5":
-            explosion.image=="explosion6"
+            explosion.image="explosion6"
         elif explosion.image=="explosion6":
             explosions.remove(explosion)
     clock.schedule(update_explosion, 0.1)             
