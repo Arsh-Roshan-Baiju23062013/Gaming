@@ -31,11 +31,12 @@ def update():
     global life, direction, score, alien_speed
     
     if life <= 0 or score >= 500:
-        return 
+        return
 
     if keyboard.left or keyboard.a:
         if ship.left > 0:
             ship.x -= 8
+        game=True
     if keyboard.right or keyboard.d:
         if ship.right < WIDTH:
             ship.x += 8

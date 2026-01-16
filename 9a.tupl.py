@@ -1,4 +1,4 @@
-tuple=("Happy", ["Quirky", "Excited", "Disgusted"], "Sad", "Angry", "Depressed", "Mad")
+tuple=("Happy", ["Quirky", "Excited", "Disgusted"], "Sad", "Angry", "Depressed", "Mad", "Mad")
 
 # tuple[1]="Nervous"
 tuple[1][2]="Weird"
