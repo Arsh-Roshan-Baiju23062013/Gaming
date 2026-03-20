@@ -4,8 +4,8 @@ WIDTH=700
 HEIGHT=700
 
 pygame.init()
-r=pygame.image.load("images\Rocket.png")
-space=pygame.image.load("images\Space.png")
+r=pygame.image.load("Gaming\Pygames\Rocket.png")
+space=pygame.image.load("Gaming\Pygames\Space.png")
 spacebg=pygame.transform.scale(space, (WIDTH, HEIGHT))
 rocket=pygame.transform.scale(r, (50, 70))
 
@@ -19,13 +19,13 @@ class Spaceship(pygame.sprite.Sprite):
         self.rect.center=self.x, self.y
     def update(self, keys):
         if keys[pygame.K_w]:
-            self.rect.y=self.rect.y-5
+            self.rect.y=self.rect.y-1
         if keys[pygame.K_a]:
-            self.rect.x=self.rect.x-5
+            self.rect.x=self.rect.x-1
         if keys[pygame.K_s]:
-            self.rect.y=self.rect.y+5
+            self.rect.y=self.rect.y+1
         if keys[pygame.K_d]:
-            self.rect.x=self.rect.x+5  
+            self.rect.x=self.rect.x+1
      
 screen=pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -50,7 +50,7 @@ while True:
     
     screen.blit(spacebg, (0, 0))
     img.draw(screen)
-    Saucer.rect.y+=0.5
+    Saucer.rect.y+=1
     keys=pygame.key.get_pressed()
     img.update(keys)
     pygame.display.update()
